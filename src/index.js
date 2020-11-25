@@ -27,24 +27,25 @@ function onSearch(e) {
     fetchCountries(searchQuery)
         .then(
             
-            contries => {
+            countries => {
             
-                if (contries.length > 10) {
+                if (countries.length > 10) {
                     error({
                         text: 'Too many matches found. Please enter a more specific query!',
-                        type: 'info'
+                        type: 'info',
+                        delay: 800
                     });
-                } else if (contries.length >= 2 && contries.length <= 10) {
-                    renderContriesList(contries);
+                } else if (countries.length >= 2 && countries.length <= 10) {
+                    renderContriesList(countries);
 
-                } else if (contries.length < 2) {
-                    renderCountryCard(contries[0])
+                } else if (countries.length < 2) {
+                    renderCountryCard(countries[0])
                 }
                 else
                     return onFetchError()
             })
         .catch(onFetchError)
-        .finally(clear);
+  //      .finally(clear);
 }
 
 function renderCountryCard(country) {
